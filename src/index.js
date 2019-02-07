@@ -1,9 +1,10 @@
 import './styl/main.styl';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AddHeroForm from './containers/AddHeroForm';
 
 
 ReactDOM.render(
-  <div>start react app</div>,
+  <AddHeroForm />,
   document.getElementById('app')
 );
