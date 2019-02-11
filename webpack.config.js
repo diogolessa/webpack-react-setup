@@ -2,16 +2,25 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
+  mode: devMode ? 'development' : 'production',
   entry: {
     bundle: './src/index.js'
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, './dist')
+  },
+  devServer: {
+    contentBase: path.join(__dirname, './dist'),
+    compress: true,
+    port: 9000,
+    open: true,
+    hot: true
   },
   module: {
     rules: [
@@ -49,6 +58,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html'
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
