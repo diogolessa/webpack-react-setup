@@ -1,17 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Input extends React.Component {
+class Input extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
 
   render() {
-
-    const { props } = this;
-
-    return (<div>dasdsa</div>);
-    
+    return <input type="text" />;
   }
 
 }
