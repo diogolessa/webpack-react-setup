@@ -1,12 +1,18 @@
 import {
   ADD_HERO,
   REMOVE_HERO
-} from '../contants/heroes';
+} from '../constants/heroes';
 
-export const addHero = hero => ({
-  type: ADD_HERO, hero
-});
+const addHero = dispatch => hero => {
+  console.log(hero)
+  dispatch({ type: ADD_HERO, hero });  
+};
 
-export const removeHero = heroId => ({
-  type: REMOVE_HERO, heroId
-});
+const removeHero = dispatch => heroId => {
+  dispatch({ type: REMOVE_HERO, heroId });  
+};
+
+export default {
+  addHero,
+  removeHero
+}

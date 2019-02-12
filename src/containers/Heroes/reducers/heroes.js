@@ -1,23 +1,18 @@
 import buildState from '../../../utils/buildState';
 
-const initialState = {
-  list: [],
-  fetching: false
-};
+var count = 0;
 
-export default (state = buildState(initialState), action) => {
+// const initialState = [];
+
+export default (state = [], action) => {
   switch(action.type) {
     case 'ADD_HERO':
-      // @TODO: add hero from list
-      return {
-        ...state,
-        fetching: false
-      }
+      const newHero = Object.assign({ id: count }, action.hero);
+      count++;
+      return  [...state, newHero]
     case 'REMOVE_HERO':
-      // @TODO: remove hero from list
-      return {
-        ...state,
-        fetching: false
-      }
+      return  [...state, action.payload]
+    default:
+      return state;
   }
 }
