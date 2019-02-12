@@ -36,6 +36,18 @@ class AddHeroForm extends Component {
     }
   }
 
+  clearHero = () => {
+    this.setState({
+      hero: {
+        name: '',
+        superPower: '',
+        weakness: '',
+        archEnemy: '',
+        type: ''
+      }
+    });
+  }
+
   onChangeField = type => event => {
     this.setState({
       hero: {
@@ -50,13 +62,18 @@ class AddHeroForm extends Component {
 
     const { addHero } = this.props;
     addHero(this.state.hero);
+    this.clearHero();
   }
 
   render() {
 
-    const { classes } = this.props;
-    const { hero } = this.state;
-    const { onChangeField } = this;
+    const {
+      onChangeField,
+      state: { hero },
+      props: { classes, heroes }
+    } = this;
+
+    console.log(heroes);
 
     return (
       <form name="addHeroForm" onSubmit={this.onAddHero}>
@@ -108,6 +125,13 @@ class AddHeroForm extends Component {
             </Grid>
           </Grid>
         </Paper>
+        <ul>
+          { heroes.length &&
+            heroes.map(hero =>
+              <li key={hero.id}>{hero.name}</li>
+            )
+          }
+        </ul>
       </form>
     );
   }
@@ -115,8 +139,15 @@ class AddHeroForm extends Component {
 
 const AddHeroFormStyled = withStyles(styles)(AddHeroForm);
 
+const mapStateToProps = state => ({
+  heroes: state.heroes
+});
+
 const mapDispatchToProps = dispatch => ({
   addHero: dispatch(heroActions.addHero)
 });
 
-export default connect(null, mapDispatchToProps)(AddHeroFormStyled);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddHeroFormStyled);
