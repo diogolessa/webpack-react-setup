@@ -13,13 +13,15 @@ module.exports = {
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, './dist')
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/'
   },
   devServer: {
     contentBase: path.join(__dirname, './dist'),
     compress: true,
     port: 9000,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
   module: {
     rules: [

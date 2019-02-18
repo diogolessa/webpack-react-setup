@@ -2,13 +2,13 @@ import './styl/main.styl';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import store from './createStore';
-import AddHeroForm from './containers/AddHeroForm';
 import { Provider } from 'react-redux';
+import App from './app';
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <AddHeroForm />
+    <App />
   </Provider>,
   document.getElementById('app')
 );
